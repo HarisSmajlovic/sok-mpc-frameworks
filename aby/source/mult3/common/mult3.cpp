@@ -2,6 +2,7 @@
 #include "mult3.h"
 #include <string>
 #include <iostream>
+#include<chrono>
 using namespace std;
 
 int32_t test_mult3_circuit(e_role role, char* address, uint16_t port, seclvl seclvl,
@@ -63,6 +64,7 @@ int32_t test_mult3_circuit(e_role role, char* address, uint16_t port, seclvl sec
      */
     s_out = BuildSharedMult3Circuit(i0, i1, i2, circ);
 
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 	/**
 	 Step 9: Execute the circuit 
 	 */
@@ -74,6 +76,10 @@ int32_t test_mult3_circuit(e_role role, char* address, uint16_t port, seclvl sec
 	output = s_out->get_clear_value<uint16_t>();
 
 	cout << "Circuit Result: " << output << endl;
+
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
 
     // clean up
     delete i0;
@@ -89,6 +95,7 @@ share * BuildSharedMult3Circuit(share *s_0, share *s_1, share *s_2,
                                 ArithmeticCircuit *ac) {
     share *out = ac->PutMULGate(s_0, s_1);
     out = ac->PutMULGate(out, s_2);
+	out = ac->PutMULGate(out, s_2);
     out = ac->PutOUTGate(out, ALL);
     return out;
 }

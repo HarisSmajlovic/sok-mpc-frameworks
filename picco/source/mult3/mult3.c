@@ -12,7 +12,7 @@ public int main() {
     smcinput(C,1);
 
     private int<48> p;
-    p = A * B * C;
+    p = A * B + B * C + A * C;
 
     smcoutput(p,1);
     return 0;

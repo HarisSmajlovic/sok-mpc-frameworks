@@ -61,14 +61,16 @@ int32_t read_test_options(int32_t* argcp, char*** argvp, e_role* role,
 int main(int argc, char** argv) {
 
 	e_role role;
-	uint32_t bitlen = 32, nvals = 1, secparam = 128, nthreads = 1;
+	uint32_t bitlen = 128, nvals = 1, secparam = 128, nthreads = 1;
 	uint16_t port = 7766;
 	string address = "127.0.0.1";
 	int32_t test_op = -1;
 	e_mt_gen_alg mt_alg = MT_OT;
-	uint32_t array_len = 5;
+	uint32_t array_len = 10;
 
 	read_test_options(&argc, &argv, &role, &bitlen, &nvals, &secparam, &address, &port, &test_op);
+
+	std::cout << "DEBUG " << bitlen << " " << nvals << std::endl;
 
 	seclvl seclvl = get_sec_lvl(secparam);
 

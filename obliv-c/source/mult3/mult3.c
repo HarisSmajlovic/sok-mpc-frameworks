@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<obliv.h>
+#include<time.h>
 
 #include"mult3.h"
 
@@ -49,8 +50,14 @@ int main(int argc, char** argv){
   int currentParty = remote_host?2:1;
   setCurrentParty(&pd, currentParty); 
 
+  clock_t t;
+  t = clock();
   execYaoProtocol(&pd, mult3, &io);
+  t = clock() - t;
+  double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 
+  printf("fun() took %f seconds to execute \n", time_taken);
+  
   fprintf(stderr, "Mult3: result = %d\n", io.prod);
 
   cleanupProtocol(&pd);

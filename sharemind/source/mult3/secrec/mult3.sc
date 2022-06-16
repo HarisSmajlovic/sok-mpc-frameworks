@@ -27,7 +27,7 @@ void main() {
 	pd_shared3p uint64 bi = argument("bi");
 	pd_shared3p uint64 ci = argument("ci");
 
-    pd_shared3p uint64 product = ai * bi * ci;
+    pd_shared3p uint64 product = ai * bi + bi * ci + ai * ci;
 
     publish("product", product);
 }

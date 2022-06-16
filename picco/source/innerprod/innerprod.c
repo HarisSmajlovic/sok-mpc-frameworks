@@ -2,7 +2,7 @@
  * takes the inner product of two inputs
  */
 
-public int LEN = 10;
+public int LEN = 100000;
 
 public int main() {
 

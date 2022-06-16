@@ -17,13 +17,15 @@ cp -r cmake-3.12.3-Linux-x86_64/share/* /usr/share/
 rm -r cmake*
 
 # install latest boost 1.66
+# apt-get install libboost-all-dev
 cd
-wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.bz2
-tar xvjf boost_1_66_0.tar.bz2
-rm boost_1_66_0.tar.bz2
+wget https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2
+tar xjf boost_1_78_0.tar.bz2
+rm boost_1_78_0.tar.bz2
 rm -rf /usr/include/boost # remove older version if it's there
-ln -sf /root/boost_1_66_0/boost /usr/include
-cd boost_1_66_0
+ln -sf /root/boost_1_78_0/boost /usr/include
+cd boost_1_78_0
+# ls -la
 ./bootstrap.sh
-./bjam toolset=gcc --with-system --with-thread --with-chrono --with-date_time --with-atomic install
+./b2 toolset=gcc --with-system --with-thread --with-chrono --with-date_time --with-atomic install
 

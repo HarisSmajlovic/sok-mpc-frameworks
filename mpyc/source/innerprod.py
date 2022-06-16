@@ -12,7 +12,7 @@ secret-shared vectors x and y. The dot product x.y is then computed securely.
 from random import randint
 from mpyc.runtime import mpc
 
-LOAD = 100
+LOAD = 100000
 
 flatten = lambda x: [a for _ in x for a in _]
 

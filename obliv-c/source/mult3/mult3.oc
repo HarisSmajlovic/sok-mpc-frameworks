@@ -15,7 +15,7 @@ void mult3(void* args){
   obliv int b = b1 + b2;
   obliv int c = c1 + c2;
 
-  obliv int prod = a * b * c;
+  obliv int prod = a * b + b * c + a * c;
   revealOblivInt(&(io->prod), prod, 0);
 
 }

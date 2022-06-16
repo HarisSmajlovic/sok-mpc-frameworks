@@ -17,6 +17,7 @@
  */
 
 #include "innerproduct.h"
+#include <chrono>
 
 int32_t test_inner_product_circuit(e_role role, char* address, uint16_t port, seclvl seclvl,
 		uint32_t nvals, uint32_t bitlen, uint32_t nthreads, e_mt_gen_alg mt_alg,
@@ -92,6 +93,7 @@ int32_t test_inner_product_circuit(e_role role, char* address, uint16_t port, se
 	 */
 	s_out = circ->PutOUTGate(s_out, ALL);
 
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 	/**
 	 Step 9: Executing the circuit using the ABYParty object evaluate the
 	 problem.
@@ -104,6 +106,10 @@ int32_t test_inner_product_circuit(e_role role, char* address, uint16_t port, se
 	output = s_out->get_clear_value<uint16_t>();
 
 	cout << "Circuit Result: " << output << endl;
+
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
 
 	delete s_x_vec;
 	delete s_y_vec;

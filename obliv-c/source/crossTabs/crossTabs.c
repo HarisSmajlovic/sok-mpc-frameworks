@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<obliv.h>
 #include<bcrandom.h>
+#include<time.h>
 
 #include"../common/util.h"
 #include"crossTabs.h"
@@ -29,7 +30,8 @@ int main(int argc,char* argv[])
   FILE *file;
 
   file = fopen(argv[3], "r");
-  fscanf(file, "%zu\n", &(io.iN));
+  // fscanf(file, "%zu\n", &(io.iN));
+  io.iN = 10;
   
   printf("Read n from file %s, value=%zu\n", argv[3], io.iN);
 
@@ -60,7 +62,12 @@ int main(int argc,char* argv[])
   io.nCategories = N_CATEGORIES;
 
   // Run protocol
+  clock_t t;
+  t = clock();
   execYaoProtocol(&pd,crossTabs, &io);
+  t = clock() - t;
+  double time_taken = ((double)t)/CLOCKS_PER_SEC;
+  fprintf(stdout, "Time taken %f\n", time_taken);
 
   fprintf(stdout, "Cat\tSum\tCount\n");
   for(size_t i=0; i<N_CATEGORIES; i++){

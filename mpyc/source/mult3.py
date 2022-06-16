@@ -21,7 +21,8 @@ async def main():
         inputs = mpc.input(secint(value), senders=[0,1,2])
 
     # compute product 
-    prod = mpc.prod(inputs)
+    prod = mpc.prod(inputs) + mpc.prod(inputs)
+    # prod = mpc.prod(inputs)
    
     # output result
     result = await mpc.output(prod)

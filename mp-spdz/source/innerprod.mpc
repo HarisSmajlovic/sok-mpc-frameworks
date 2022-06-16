@@ -1,6 +1,6 @@
 sum = sint(0)
 
-for _ in range(3):
+for _ in range(100000):
   x1 = sint.get_input_from(0)
   print_ln("x1: %s", x1.reveal())
   x2 = sint.get_input_from(1)

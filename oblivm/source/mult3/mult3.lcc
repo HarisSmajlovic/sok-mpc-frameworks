@@ -13,7 +13,7 @@ int main@n@m(int@n x, int@m y){
   secure int b = b1 + b2;
   secure int c = c1 + c2;
 
-  secure int result = a * b * c;
+  secure int result = a * b + b * c + a * c;
 
   return result;
 }

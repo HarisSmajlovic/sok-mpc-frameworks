@@ -1,9 +1,10 @@
 #include "emp-sh2pc/emp-sh2pc.h"
 #include <new>
+#include <chrono>
 using namespace emp;
 using namespace std;
 
-int LEN = 10;
+int LEN = 100000;
 
 void test_innerprod(int bitsize, string inputs_a[], string inputs_b[], int len) {
 
@@ -80,6 +81,11 @@ int main(int argc, char** argv) {
 		infile_b.close();
 	}
 
-	test_innerprod(bitsize, inputs_a, inputs_b, LEN);
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    test_innerprod(bitsize, inputs_a, inputs_b, LEN);
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+
 	delete io;
 }

@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<obliv.h>
+#include<time.h>
 
 #include"innerProd.h"
 
@@ -33,12 +34,12 @@ int main(int argc, char* argv[])
   setCurrentParty(&pd, currentParty);
 
   vector v;
-  FILE* file = fopen(argv[3], "r");
-  if(fscanf(file, "%d\n", &(v.size)) == EOF){
-    fprintf(stderr, "Invalid input file\n");
-    return 2;
-  }
-  
+  // FILE* file = fopen(argv[3], "r");
+  // if(fscanf(file, "%d\n", &(v.size)) == EOF){
+  //   fprintf(stderr, "Invalid input file\n");
+  //   return 2;
+  // }
+  v.size = 100000
 
   v.arr = malloc(sizeof(int) * v.size);
 
@@ -50,11 +51,15 @@ int main(int argc, char* argv[])
 
   io.input = v;
 
+  clock_t t;
+  t = clock();
   execYaoProtocol(&pd, dotProd, &io);
+  t = clock() - t;
+  double time_taken = ((double)t)/CLOCKS_PER_SEC;
 
   int result = io.result;
 
-  fprintf(stderr, "DotProduct is %d\n", result);
+  fprintf(stderr, "DotProduct is %d. Time lapsed %f\n", result, time_taken);
 
   cleanupProtocol(&pd);
   return 0;

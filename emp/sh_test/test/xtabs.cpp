@@ -1,5 +1,6 @@
 #include "emp-sh2pc/emp-sh2pc.h"
 #include <new>
+#include <chrono>
 #include "Pair.h"
 using namespace emp;
 using namespace std;
@@ -93,7 +94,11 @@ int main(int argc, char** argv) {
         infile.close();
     }
 
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     test_xtabs(party, bitsize, xids, bins, yids, vals);
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
 
     delete io;
     return 0;

@@ -5,6 +5,6 @@
 a = sint(20)
 b = sint(3)
 c = sint(9)
-prod = a * b * c
+prod = a * b + b * c + a * c
 prod.reveal_to(0)
 

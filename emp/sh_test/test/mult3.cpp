@@ -1,3 +1,4 @@
+#include <chrono>
 #include "emp-sh2pc/emp-sh2pc.h"
 using namespace emp;
 using namespace std;
@@ -79,6 +80,10 @@ int main(int argc, char** argv) {
         infile_b.close();
     }
 
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     test_mult3(bitsize, inputs_a, inputs_b);
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
     delete io;
 }

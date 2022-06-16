@@ -7,10 +7,10 @@ def mux(cond, trueVal, falseVal):
     return cond.if_else(trueVal, falseVal)
 
 
-nRowsA = 5;
-nRowsB = 5;
+nRowsA = 10;
+nRowsB = 10;
 catMin = 1;
-catMax = 3;
+catMax = 5;
 
 # Assume each party's IDs are distinct 
 idA = [sint.get_input_from(0) for _ in range(nRowsA)]

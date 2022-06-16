@@ -9,11 +9,11 @@
 
     if (node) {
       // eslint-disable-next-line no-undef
-      jiff = require('../../lib/jiff-client');
+      JIFFClient = require('../../lib/jiff-client');
     }
 
     // eslint-disable-next-line no-undef
-    saved_instance = jiff.make_jiff(hostname, computation_id, opt);
+    saved_instance = new JIFFClient(hostname, computation_id, opt);
     return saved_instance;
   };
 
@@ -27,6 +27,10 @@
 
     // The MPC implementation should go *HERE*
     var shares = jiff_instance.share(input);
+    // var a = shares[1];
+    // var b = shares[1];
+    // var c = shares[1];
+    // var product = a.smult(b) + c.smult(b) + a.smult(c);
     var product = shares[1];
     for (var i = 2; i <= jiff_instance.party_count; i++) {
       product = product.smult(shares[i]);

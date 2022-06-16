@@ -11,8 +11,8 @@ from mpyc.runtime import mpc
 from mpyc.seclists import seclist
 secint = mpc.SecInt()
 
-N = 25 # number of samples
-C = 4 # number of categories
+N = 10 # number of samples
+C = 5 # number of categories
 
 # deterministic input data
 # (no mpc.input to assign different inputs to different parties)

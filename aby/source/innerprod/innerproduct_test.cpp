@@ -62,7 +62,7 @@ int32_t read_test_options(int32_t* argcp, char*** argvp, e_role* role,
 int main(int argc, char** argv) {
 
 	e_role role;
-	uint32_t bitlen = 16, nvals = 10, secparam = 128, nthreads = 1;
+	uint32_t bitlen = 64, nvals = 100000, secparam = 128, nthreads = 1;
 	uint16_t port = 7766;
 	string address = "127.0.0.1";
 	int32_t test_op = -1;
@@ -70,10 +70,12 @@ int main(int argc, char** argv) {
 
 	read_test_options(&argc, &argv, &role, &bitlen, &nvals, &secparam, &address, &port, &test_op);
 
+	std::cout << "DEBUG " << bitlen << " " << nvals << std::endl;
+
 	seclvl seclvl = get_sec_lvl(secparam);
 
 	// call inner product routine. set size with cmd-parameter -n <size>
-	test_inner_product_circuit(role, (char*) address.c_str(), port, seclvl, 1, bitlen, nthreads, mt_alg, S_ARITH, nvals);
+	test_inner_product_circuit(role, (char*) address.c_str(), port, seclvl, 100000, bitlen, nthreads, mt_alg, S_ARITH, 100000);
 
 	return 0;
 }

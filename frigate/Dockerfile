@@ -7,7 +7,10 @@ RUN apt-get update && apt-get install -y \
   make \
   python \
   vim \
-  wget
+  wget \
+  libbison-dev \
+  flex \
+  bison
 ADD source/ /root/source
 ADD README.md .
 ADD install.sh .

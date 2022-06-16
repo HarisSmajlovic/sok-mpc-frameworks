@@ -30,7 +30,7 @@ def gen_mult3_input():
     f0.close()
     f1.close()
 
-    print("Expected result: %d"%product)
+    print("Expected result: %d"%product * x)
 
 def gen_innerprod_input(l):
     BITS = (16 - int(math.log(10,2))) / 2 

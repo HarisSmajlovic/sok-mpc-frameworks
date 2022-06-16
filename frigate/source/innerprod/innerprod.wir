@@ -2,7 +2,7 @@
  * compute inner product of two vectors 
  */
 
-#define LEN 10
+#define LEN 100000
 #parties 2
 
 /* define some types */
